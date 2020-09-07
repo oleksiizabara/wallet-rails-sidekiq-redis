@@ -33,6 +33,7 @@ The current balance is calculated and saved in the database as the difference of
 
 https://github.com/oleksiizabara/wallet-rails-sidekiq-redis/blob/3e4750d37290f652c5c9a07fed89e1a91f46b989/app/models/wallet.rb#L69
 
+
 ### deploy:
 
 * rails db:create
@@ -44,3 +45,8 @@ https://github.com/oleksiizabara/wallet-rails-sidekiq-redis/blob/3e4750d37290f65
 * sidekiq
 
 http://localhost:3000
+
+### test
+
+rspec
+
