@@ -1,10 +1,11 @@
 # README
-####simple frontend
+
+#### simple frontend
 heroku(simple frontend part): https://enigmatic-castle-24143.herokuapp.com/
 
 doc(simple user documentation): https://enigmatic-castle-24143.herokuapp.com/documentation
 
-####basic requirements for the task
+#### basic requirements for the task
 
 All logic is concentrated in /services/ and /query/
 
@@ -33,7 +34,7 @@ The current balance is calculated and saved in the database as the difference of
 
 https://github.com/oleksiizabara/wallet-rails-sidekiq-redis/blob/3e4750d37290f652c5c9a07fed89e1a91f46b989/app/models/wallet.rb#L69
 
-####deploy:
+#### deploy:
 
 * rails db:create
 * rails db:migrate
