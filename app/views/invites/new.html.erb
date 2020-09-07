@@ -1,0 +1,40 @@
+<h1>New Invite</h1>
+
+<div class="depot_form">
+	<% if flash[:alert] %>
+		<p id="notice"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_for(@invite, url: invites_path) do |f| %>
+ <%= f.hidden_field :wallet_id, value: params[:wallet_id] %>
+
+<table>
+
+    <tr>
+        <td>
+            <%= f.label :user_email %><br>
+            <%= f.email_field :user_email %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <%= f.label :message, 'Write message here' %>:<br>
+            <%= f.text_field :message %>
+        </td>
+    </tr>
+    <% if @wallet.is_a?(Family) %>
+        <tr>
+            <td>
+                <%= f.label :daily_limit, 'User daily limit' %>:<br>
+                <%= f.text_field :daily_limit %>
+            </td>
+        </tr>
+    <% end %>
+
+</table>
+  <%= f.submit %>
+<% end %><br><br>
+	
+
+<%= link_to 'Back to wallet', wallet_path(id: params[:wallet_id]) %>
+

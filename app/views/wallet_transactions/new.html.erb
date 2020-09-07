@@ -1,0 +1,122 @@
+<h1><%= params[:type].humanize  %></h1>
+
+<div class="depot_form">
+	<% if flash[:alert] %>
+		<p id="notice"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_for('wallet_transaction', url: wallet_transactions_path) do |f| %>
+ <%= f.hidden_field :type, value: params[:type] %>
+
+<table>
+
+    <% if params[:type] == 'replenish_your_wallet' %>
+        <% if @user.wallets.present? %>
+            <tr>
+                <td>
+                    <%= f.label :wallet_to_id, 'Select your wallet' %>:
+                    <%= f.select(:wallet_to_id, @user.wallets.collect { |w| ["#{w.identity} (#{w.capital})", w.id] }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= f.label :transfered_money, 'Transfered money' %>:
+                    <%= f.number_field :transfered_money %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= f.submit %>
+                </td>
+            </tr>
+              
+        <% else %>
+            You have not any wallet!
+            <%= link_to 'Create Your Personal Wallet', new_wallet_path(type: 'Personal') %>
+        <% end %>
+    <% end %>
+
+    <% if params[:type] == 'between_your_wallets' %>
+        <% if @wallets_from.present? %>
+            <tr>
+                <td>
+                    <%= f.label :wallet_from_id, 'Select wallet from' %>:
+                    <%= f.select(:wallet_from_id, @wallets_from.collect { |w| ["#{w.identity} (#{w.capital})", w.id] }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= f.label :wallet_to_id, 'Select wallet to' %>:
+                    <%= f.select(:wallet_to_id, @user.wallets.collect { |w| ["#{w.identity} (#{w.capital})", w.id] }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= f.label :transfered_money, 'Transfered money' %>:
+                    <%= f.number_field :transfered_money %>
+                </td>
+            </tr>
+              <tr>
+                <td>
+                    <%= f.submit %>
+                </td>
+            </tr>
+        <% else %>
+            You have not any wallet!
+            <%= link_to 'Create Your Personal Wallet', new_wallet_path(type: 'Personal') %>
+        <% end %>
+    <% end %>
+
+    <% if params[:type] == 'to_another_wallet' %>
+        <% if @wallets_from.present? %>
+            <tr>
+                <td>
+                    <%= f.label :wallet_from_id, 'Select wallet from' %>:
+                    <%= f.select(:wallet_from_id, @wallets_from.collect { |w| ["#{w.identity} (#{w.capital})", w.id] }) %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= f.label :wallet_to, 'Paste wallet to' %>:
+                    <%= f.text_field :wallet_to, placeholder: 'USD-****************' %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= f.label :tax_paid_by_the_recipient, 'tax paid by the recipient' %>:
+                    <%= f.check_box :tax_paid_by_the_recipient, {}, true, false %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%= f.label :transfered_money, 'Transfered money' %>:
+                    <%= f.number_field :transfered_money %>
+                </td>
+            </tr>
+               <tr>
+                <td>
+                    <%= f.submit %>
+                </td>
+            </tr>
+        <% else %>
+            You have not any wallet!
+            <%= link_to 'Create Your Personal Wallet', new_wallet_path(type: 'Personal') %>
+        <% end %>      
+    <% end %>
+
+
+</table>
+
+<% end %>
+	
+
+<%= link_to 'Back', wallets_path %>
+
+<hr>
+
+<font size='1' color='red'><b>Transaction plans:</b><br></font>
+
+<% TransactionPlan.all.each do |plan| %>
+<font size='1' color='grey'><%= "from #{plan.from}  to #{plan.to || 'and more' } tax is: #{plan.price} " %></font><br>
+
+<% end %>

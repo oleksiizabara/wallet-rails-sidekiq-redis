@@ -1,0 +1,39 @@
+<div class="depot_form">
+	<% if flash[:alert] %>
+		<p id="notice"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_for(@wallet, url: wallets_path) do |f| %>
+ <%= f.hidden_field :type, value: params[:type] %>
+
+<table>
+    <tr>
+        <td>
+            <%= f.label :description, 'Add description' %>:
+            <%= f.text_field :description %>
+        </td>
+    </tr>
+    <tr>
+            <%= f.label :currency, 'Select currency' %>:
+            <%= f.select(:currency_id, Currency.all.collect { |c| [c.id, c.id] }) %>
+        </td>
+    </tr>
+
+
+    <% if params[:type] == 'Team' %>
+        <tr>
+                <%= f.label :is_private, 'Select privacy' %>:
+                <%= f.select(:is_private, [['private', true], ['public', false]]) %>
+            </td>
+        </tr>
+    <% end %>
+
+
+
+
+</table>
+  <%= f.submit %>
+<% end %>
+	
+
+<%= link_to 'Back', wallets_path %>

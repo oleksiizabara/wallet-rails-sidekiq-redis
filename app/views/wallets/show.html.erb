@@ -1,0 +1,55 @@
+<%= link_to 'Back', wallets_path %> <hr>
+
+<b><%= image_tag "#{@wallet.type}.png", class: "wallet_icon" %>
+ (<%= @wallet.capital %> <%= @wallet.currency_id %>)</b> - <%= @wallet.identity %> - <%= @wallet.description %> <br><br>
+<% if @wallet.type != 'Personal' %>
+    <% if @wallet.type == 'Family' %> 
+    <b> Your daily limit: </b> <%= @wallet.available_user_limit(@user.id) || 'with no restrictions'  %> <br><br>
+    <b> Your budget: </b> <%= @wallet.user_budget(@user.id)  %> <br><br>
+
+       <b> Your family: </b>
+    <% else %>
+       <b> Your team:</b>
+    <% end %><br>
+    <% @wallet.users.each do |user| %>
+        - <%= link_to user.name, user %> - <%= user.email %> <br>
+    <% end %><br> <br>
+    <% if (@wallet.admin_id == @user.id && @wallet.is_private) || !@wallet.is_private %>
+        <%= link_to 'Invite user to this wallet', new_invite_path(wallet_id: @wallet.id) %><br><br>
+    <% end %>
+
+    <b>Not confirmed invites: </b><br>
+    <% @wallet.invites.where(is_confirmed: false).each do |invite| %>
+        - <%= link_to invite.user.name, invite.user %> - <%= invite.created_at %> <br>
+    <% end %><br> <br>
+<% end %>
+<hr>
+
+<b> Transactions: </b><br> <br>
+<table>
+    <tr>
+        <% @wallet.wallet_transactions.each do |t| %>
+
+            <td><% if t.wallet_to_id != @wallet.id  %> 
+                <font color="red"><b><=====</b></font>
+            <% else %>
+                <font color="green"><b>=====></b></font> 
+            <% end %></td>
+            <td>
+            <% if t.wallet_from_id.present? %> 
+            - from: <b><%= Wallet.find(t.wallet_from_id).identity %></b>
+            <% end %> 
+            
+            - <%= t.transaction_type.humanize %> 
+            - <b><%= "#{t.transfered_money} #{t.currency_id}" %> </b>
+            - <%= t.status.humanize %>
+
+            <%= link_to 'more details', t %>
+
+            <br> <br>
+            </td>
+    </tr>
+    <% end %>
+
+</table>
+

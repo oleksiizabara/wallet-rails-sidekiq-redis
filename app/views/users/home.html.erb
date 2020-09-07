@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to "My Invites (#{@user.invites.where(is_declined: nil).count})", invites_path %> <hr>
+
+<table align='center'>
+
+    <tr>
+        <td align='center'>
+            <%= link_to wallets_path do %>
+                <%= image_tag "all.png", class: "wallet_logo" %>
+            <% end %>
+        </td>
+    </tr>
+    <tr>
+    <td align='center'> My wallets </td>
+</tr>
+</table>
+
+<hr>
+
+<h1 align='center'> Create new wallet: </h1><br><br>
+
+<table align='center'>
+
+<tr>
+    <td align='center'>
+        <%= link_to new_wallet_path(type: 'Personal') do %>
+            <%= image_tag "Personal.png", class: "wallet_logo" %>
+        <% end %>
+    </td>
+
+    <td align='center'>
+        <%= link_to new_wallet_path(type: 'Team') do %>
+            <%= image_tag "Team.png", class: "wallet_logo" %>
+        <% end %>
+    </td>
+
+    <td align='center'>
+        <%= link_to new_wallet_path(type: 'Family') do %>
+            <%= image_tag "Family.png", class: "wallet_logo" %>
+        <% end %>
+    </td>
+</tr>
+<tr>
+    <td align='center'> New Personal Wallet </td>
+    <td align='center'> New Team Wallet </td>
+    <td align='center'> New Family Wallet </td>
+</tr>
+
+</table>

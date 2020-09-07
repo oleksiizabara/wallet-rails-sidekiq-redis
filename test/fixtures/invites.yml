@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  wallet_id: 
+  from_id: 1
+  message: MyString
+  is_confirmed: false
+  is_declined: false
+
+two:
+  user_id: 
+  wallet_id: 
+  from_id: 1
+  message: MyString
+  is_confirmed: false
+  is_declined: false

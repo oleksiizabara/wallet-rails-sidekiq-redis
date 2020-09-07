@@ -1,0 +1,169 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+td {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+form {
+    z-index: 15;
+    position: relative;
+    background: white;
+    // width: $max-width;
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(black, .1);
+    box-sizing: border-box;
+    margin: 10px auto 10px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+input {
+    outline: none;
+    display: block;
+    background: rgba(black, 0.1);
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 2px 20px;
+    color: gray;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: semibold;
+    line-height: inherit;
+    transition: 0.3s ease;
+    cursor: pointer;    
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+select {
+    outline: none;
+    display: block;
+    background: rgba(black, 0.1);
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 2px 20px;
+    color: gray;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: semibold;
+    line-height: inherit;
+    transition: 0.3s ease;
+    height: 50px;   
+}
+
+button {
+    outline: none;
+    background: accent;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 20px;
+    color: white;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: semibold;
+    line-height: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.wallet_logo {
+    height: 150px;
+    width: 150px;
+}
+
+.wallet_icon {
+    height: 50px;
+    width: 50px;
+}
+
+header {
+   width: 100%;
+   background-color: rgb(48, 45, 45);
+   padding-top: 15px;
+   padding-bottom: 15px;
+   color: rgb(226, 107, 107);
+   text-align: center;
+
+   img {
+      float: left;
+      height: 30px;
+   }
+}
+
+ul {
+    margin-top: 20px;
+    list-style-type: none;
+  }
+   
+  li {
+    margin-left: 20px;
+    font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  }
+
+   
+  li a {
+    text-decoration: none;
+    color: rgb(241, 172, 172);
+    display: block;
+    width: 200px;
+   
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+  }
+   
+  li a:hover {
+    font-size: 30px;    
+  }
+
+main {
+  margin-top: -5;
+  height: calc(100% - 65px);
+   
+   .field {
+       width: 60%;
+       margin-left: 20%;
+       padding-left: 10px;
+       padding-top: 10px;
+
+   }
+   .menu {
+       float: left;
+       width: 15%;
+       background: rgb(100, 100, 100);
+    //    padding-left: 10px;
+       height: 100%;
+   }
+}

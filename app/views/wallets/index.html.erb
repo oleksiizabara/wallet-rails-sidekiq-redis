@@ -1,0 +1,28 @@
+<%= link_to 'Operations with wallets', money_transfers_path %>
+<hr>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Wallets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wallets.each do |wallet| %>
+      <tr>
+        <td> <%= image_tag "#{wallet.type}.png", class: "wallet_icon" %> </td>
+        <td>
+
+          <b><%= wallet.type %> (<%= wallet.capital %> <%= wallet.currency_id %>)</b> - 
+          <%= wallet.identity %> - <%= wallet.description %> - 
+          <%= link_to 'Show', wallet_path(id: wallet.id) %> <br>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

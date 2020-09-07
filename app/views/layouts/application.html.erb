@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wallet System</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  
+    <header>
+      <%= @page_title || "Wallet System" %>
+    </header>
+    <main>
+      <div class="menu">
+        <ul>
+
+        <% if session[:email].blank? %>
+
+            <li> <%= link_to "login", new_user_session_path %> </li><br>
+            <li> <%= link_to "sign up", new_user_registration_path %> </li>
+        <% else %>
+            <li> <%= link_to('Home', home_path, method: :get) %></li><br>
+
+            <li> <%= link_to('Logout', destroy_user_session_path, method: :delete) %></li><br>
+        <% end %><br><br><br><br>
+
+        <li> <%= link_to('Doc', documentation_path) %></li><br>
+        </ul>
+      </div>
+      <div class="field">
+        <%= yield %>
+      </div>
+    </main>
+    
+  </body>
+</html>

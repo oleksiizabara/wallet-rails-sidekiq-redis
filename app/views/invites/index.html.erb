@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Invites</h1>
+
+<table>
+
+    <% @invites.each do |invite| %>
+
+    <tr>
+      <td><%= invite.message %> - 
+        <%= link_to 'Show invite', edit_invite_path(invite) %></td>
+      </tr>
+    <% end %>
+</table>

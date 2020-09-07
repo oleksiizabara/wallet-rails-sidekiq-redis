@@ -1,0 +1,10 @@
+<h1>Editing Invite</h1>
+
+<b>Invite from:</b> <%= link_to @from_user.name, @from_user %><br><br>
+<b>Invite to <%= @wallet_from.type.downcase %> wallet:</b> <%= @wallet_from.identity %><br><br>
+
+<td><%= link_to 'Confirm', invite_path(@invite.id, is_confirmed: true, is_declined: false, wallet_id: @invite.wallet_id), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+ | <td><%= link_to 'Decline', invite_path(@invite.id, is_confirmed: false, is_declined: true, wallet_id: @invite.wallet_id), method: :patch, data: { confirm: 'Are you sure?' } %></td>
+
+
+ | <%= link_to 'Back', invites_path %>

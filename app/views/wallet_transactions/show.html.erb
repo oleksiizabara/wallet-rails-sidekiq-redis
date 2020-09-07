@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<b>Type: </b><%= @wallet_transaction.transaction_type.humanize %><br><br>
+<b>Initiator: </b><%= link_to @initiator.name, @initiator %><br><br>
+
+<b>Status: </b><%= @wallet_transaction.status.humanize %> 
+<% if @wallet_transaction.in_progress? %>
+
+    - <%= link_to 'refresh', @wallet_transaction %> 
+<% end %>
+
+<% if @wallet_transaction.failed? %> 
+
+    <i>(<%= @wallet_transaction.error_message %>)</i>
+<% end %><br><br>   
+
+<b>Sum of transfer: </b><%= "#{@wallet_transaction.transfered_money} #{@wallet_transaction.currency_id}"  %><br>
+<b>Transaction tax: </b><%= "#{@wallet_transaction.tax}  #{@wallet_transaction.currency_id}" %><br><br><br>
+
+<% if @wallet_transaction.replenish_your_wallet? %>
+    <b>To your wallet:</b>  <%= @wallet_to %>
+<% end %>
+
+<% if @wallet_transaction.between_your_wallets? %>
+    <b>From your wallet:</b>  <%= @wallet_from %> => 
+    <b>To your wallet:</b>  <%= @wallet_to %><br>
+<% end %>
+
+<% if @wallet_transaction.to_another_wallet? %>
+    <b>From your wallet:</b>  <%= @wallet_from %> => 
+    <b>To wallet:</b>  <%= @wallet_to %><br>
+    <% if @wallet_transaction.tax_paid_by_the_recipient %>
+        <i>Tax paid by the recipient</i>
+    <% end %>
+
+<% end %>
+<br><br><br>
+
+<% if @wallet_transaction.new_transaction? %>
+
+    <%= link_to 'Confirm', confirm_transaction_path(@wallet_transaction), method: :post, data: 'are you sure?' %> 
+<% end %>

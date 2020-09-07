@@ -1,0 +1,34 @@
+
+<%= link_to 'My wallets', wallets_path %>
+<hr>
+
+<h1 align='center'> Operations with your wallets: </h1><br><br>
+
+<table align='center'>
+
+<tr>
+    <td align='center'>
+        <%= link_to new_wallet_transaction_path(type: :replenish_your_wallet) do %>
+            <%= image_tag "me.png", class: "wallet_logo" %>
+        <% end %>
+    </td>
+
+    <td align='center'>
+        <%= link_to new_wallet_transaction_path(type: :between_your_wallets) do %>
+            <%= image_tag "between.png", class: "wallet_logo" %>
+        <% end %>
+    </td>
+
+    <td align='center'>
+        <%= link_to new_wallet_transaction_path(type: :to_another_wallet) do %>
+            <%= image_tag "another.png", class: "wallet_logo" %>
+        <% end %>
+    </td>
+</tr>
+<tr>
+    <td align='center'> Replenish your wallet</td>
+    <td align='center'> Between your wallets</td>
+    <td align='center'> To another wallet </td>
+</tr>
+
+</table>
